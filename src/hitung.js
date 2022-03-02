@@ -18,7 +18,16 @@ class Hitung extends Component {
 
                 </View>
 
-<View style={{borderBottomColor:'black', borderBottomWidth:5, width:'90%', marginTop:25}}></View>
+                <View style={{
+                    height:"10%",
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <Text style={{ fontSize: 18 }}>Hasil</Text>
+                    <Text style={{ fontSize: 25 }}>0 Kg</Text>
+                </View>
+
+                <View style={{ borderBottomColor: 'black', borderBottomWidth: 5, width: '90%', marginTop: 25 }}></View>
                 <View style={styles.textInputContainer}>
 
                     <Text style={[styles.inputtitle]}>Masukan Lingkar Dada Sapi</Text>
@@ -37,13 +46,6 @@ class Hitung extends Component {
                     <Text>Hitung</Text>
                 </TouchableOpacity>
 
-                <View style={{flex:1,
-                justifyContent: 'center',
-                alignItems:'center'}}>
-                    <Text style={{fontSize:18}}>Hasil</Text>
-                    <Text style={{fontSize:25}}>0 Kg</Text>
-                </View>
-
             </View>
         );
     }
@@ -55,13 +57,13 @@ const styles = StyleSheet.create(
         MainContainer: {
 
             flex: 1,
-            backgroundColor: '#5eb7cf',
+            backgroundColor: "#efffff",
             alignItems: 'center'
 
         },
 
         button: {
-            backgroundColor: "#a1e2d5",
+            backgroundColor: "#FFB347",
             elevation: 7,
             marginTop: 25,
             width: '80%',
@@ -78,13 +80,13 @@ const styles = StyleSheet.create(
             height: 150,
             elevation: 5,
             marginTop: 50,
-            marginBottom:15,
-            backgroundColor: 'green',
+            marginBottom: 15,
+            backgroundColor: 'black',
             marginHorizontal: 20
         },
 
         title: {
-            fontFamily: 'arial',
+            fontFamily: 'poppins',
             color: 'black',
             fontSize: 25,
             textAlign: 'center',

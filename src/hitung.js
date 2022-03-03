@@ -14,12 +14,9 @@ class Hitung extends Component {
     render() {
         return (
             <View style={[styles.MainContainer]}>
-                <View style={[styles.logo]}>
-
-                </View>
-
+                <Image source={require('./images/logo.png')} style={[styles.logo]} />
                 <View style={{
-                    height:"10%",
+                    height: "10%",
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>
@@ -55,7 +52,6 @@ const styles = StyleSheet.create(
     {
 
         MainContainer: {
-
             flex: 1,
             backgroundColor: "#efffff",
             alignItems: 'center'

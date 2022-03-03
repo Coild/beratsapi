@@ -32,9 +32,7 @@ class About extends Component {
         return (
             <View style={[styles.MainContainer]}>
 
-                <View style={[styles.logo]}>
-
-                </View>
+                <Image source={require('./images/logo.png')} style={[styles.logo]} />
 
                 <Text style={[styles.title]}>
                     EasyCow
@@ -42,13 +40,13 @@ class About extends Component {
 
                 <Text style={{
                     fontSize: 18,
-                    borderRadius:7,
+                    borderRadius: 7,
                     borderColor: "#FFB347",
-                    borderWidth:3,
-                    borderLeftWidth:3,
-                    borderRightWidth:3,
-                    borderTopWidth:3,
-                    paddingTop:15,
+                    borderWidth: 3,
+                    borderLeftWidth: 3,
+                    borderRightWidth: 3,
+                    borderTopWidth: 3,
+                    paddingTop: 15,
                     textAlign: 'justify',
                     paddingHorizontal: '5%',
                     marginHorizontal: '5%'

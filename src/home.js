@@ -8,6 +8,7 @@ import {
   Touchable,
   TouchableOpacity,
   useColorScheme,
+  Image,
   Alert,
   View,
 } from 'react-native';
@@ -57,11 +58,11 @@ class Home extends Component {
 
   render() {
     return (
+
       <View style={[styles.MainContainer]}>
 
-        <View style={[styles.logo]}>
+        <Image source={require('./images/logo.png')} style={[styles.logo]}/> 
 
-        </View>
 
         <Text style={[styles.title]}>
           EasyCow

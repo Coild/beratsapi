@@ -5,11 +5,9 @@ import {
     BackHandler,
     StyleSheet,
     Text,
-    Touchable,
-    TouchableOpacity,
-    useColorScheme,
-    Alert,
+    Image,
     View,
+    SafeAreaView, ScrollView,
 } from 'react-native';
 
 import {
@@ -30,39 +28,59 @@ class About extends Component {
 
     render() {
         return (
-            <View style={[styles.MainContainer]}>
+            <SafeAreaView>
+                <ScrollView >
+                    <View style={[styles.MainContainer]}>
+                        <Image source={require('./images/logo.png')} style={[styles.logo]} />
 
-                <Image source={require('./images/logo.png')} style={[styles.logo]} />
+                        <Text style={[styles.title]}>
+                            About Us
+                        </Text>
+                        <View style={[styles.box]}>
+                            <Text style={[styles.about_text]}>
+                                EasyCow merupakan aplikasi   penduga bobot badan sapi yang dapat digunakan oleh peternak untuk memperkirakan berat badan sapinya.
+                            </Text>
 
-                <Text style={[styles.title]}>
-                    EasyCow
-                </Text>
+                            <Text style={[styles.about_text]}>
+                                Masyarakat dapat mengestimasi bobot badan sapi potong dengan memasukkan lingkar dada sapi pada aplikasi.
+                            </Text>
 
-                <Text style={{
-                    fontSize: 18,
-                    borderRadius: 7,
-                    borderColor: "#FFB347",
-                    borderWidth: 3,
-                    borderLeftWidth: 3,
-                    borderRightWidth: 3,
-                    borderTopWidth: 3,
-                    paddingTop: 15,
-                    textAlign: 'justify',
-                    paddingHorizontal: '5%',
-                    marginHorizontal: '5%'
-                }}>
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                </Text>
+                            <Text style={[styles.about_text]}>
+                                Aplikasi ini sangat cocok digunakan untuk memprediksi Berat Badan Sapi Khususnya sapi asli Indonesia seperti sapi bali dan hasil silangannya dengan sapi eksotik lainnya seperti Simental x Bali (Simbal), Limosin x Bali (Limbal), Brahman x Bali (Brabal).
+                            </Text>
+
+                            <Text style={[styles.about_text]}>
+                                Masyarakat juga bisa memanfaatkan aplikasi ini untuk konsultasi masalah Kesehatan Ternak dan menambah wawasan tentang Ilmu Peternakan
+                            </Text>
+
+                            <Text style={[styles.about_text], { marginTop: 15 }}>
+                                Aplikasi ini dikembangkan oleh :
+                            </Text>
+                            <Text style={[styles.about_text]}>
+                                - Tarmizi
+                            </Text>
+                            <Text style={[styles.about_text]}>
+                                - Sukarne
+                            </Text>
+
+                            <Text style={{ marginTop: 15, textAlign: 'center' }}>
+
+                                Masukan dan saran serta potensi kerjasama dapat menghunungi nomor 087763291665
+                            </Text>
+                        </View>
 
 
-                <View style={{
-                    flex: 1,
-                    justifyContent: 'flex-end',
-                    marginBottom: 30
-                }}>
-                    <Text style={{ fontSize: 15 }}>  Fakultas Peternakan Univversitas Mataram</Text>
-                </View>
-            </View>
+
+                        <View style={{
+                            flex: 1,
+                            marginTop: 25,
+                            marginBottom: 30
+                        }}>
+                            <Text style={{ fontSize: 15 }}>  Fakultas Peternakan Universitas Mataram</Text>
+                        </View>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
 
         );
     }
@@ -78,38 +96,38 @@ const styles = StyleSheet.create(
             alignItems: 'center'
 
         },
-
-        button: {
-            fontFamily: 'arial',
-            backgroundColor: "#FFB347",
-            elevation: 7,
-            marginTop: 25,
-            width: '80%',
-            height: 50,
-            // paddingHorizontal:10,
-            marginHorizontal: '10%',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: 10
+        about_text: {
+            fontSize: 15,
+            marginBottom: 5,
+            textAlign: 'justify',
         },
-
         logo: {
             width: 150,
             height: 150,
-            elevation: 5,
             marginTop: 75,
             marginBottom: -20,
-            backgroundColor: 'black',
+            backgroundColor: 'rgba(52, 52, 52, 0)',
             marginHorizontal: 20
         },
-
         title: {
             fontFamily: 'poppins',
             color: 'black',
-            fontSize: 28,
+            fontSize: 25,
             textAlign: 'center',
             marginTop: 20,
             marginBottom: 25
+        },
+        box: {
+            borderRadius: 7,
+            borderColor: "#FFB347",
+            borderWidth: 3,
+            borderLeftWidth: 3,
+            borderRightWidth: 3,
+            borderTopWidth: 3,
+            paddingTop: 15,
+            paddingBottom: 15,
+            paddingHorizontal: '5%',
+            marginHorizontal: '5%'
         }
     });
 

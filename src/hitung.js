@@ -1,16 +1,43 @@
 import React, { Component } from 'react';
-
+import { Picker } from '@react-native-picker/picker';
 import {
     StyleSheet,
     Text,
     TextInput,
-    Touchable,
     TouchableOpacity,
-    useColorScheme,
+    Image,
     View,
 } from 'react-native';
 
+import tabel from './tabel';
+
 class Hitung extends Component {
+    state = {
+        gender: 'jantan',
+        berat: 0,
+        hasil : ''
+    }
+    updateGender = (gender) => {
+        this.setState({ gender: gender })
+    }
+
+    getHasil = () => {
+        // console.log("hasil "+new Number(this.state.berat)+" state : "+this.state.berat);
+        if(this.state.gender==="jantan"){
+            if (this.state.berat<90 || this.state.berat>199){
+                this.setState({hasil:"Tidak ditemukan"})
+            }else {
+                this.setState({hasil:tabel.tabelJantan.get(this.state.berat).toString()+' Kg'});
+            }
+            
+        } else {
+            if (this.state.berat<90 || this.state.berat>199){
+                this.setState({hasil:"Tidak ditemukan"})
+            }else {
+                this.setState({hasil:tabel.tabelBetina.get(this.state.berat).toString()+' Kg'});
+            }
+        }
+    }
     render() {
         return (
             <View style={[styles.MainContainer]}>
@@ -21,28 +48,31 @@ class Hitung extends Component {
                     alignItems: 'center'
                 }}>
                     <Text style={{ fontSize: 18 }}>Hasil</Text>
-                    <Text style={{ fontSize: 25 }}>0 Kg</Text>
+                    <Text style={{ fontSize: 25 }}>{this.state.hasil}</Text>
                 </View>
 
                 <View style={{ borderBottomColor: 'black', borderBottomWidth: 5, width: '90%', marginTop: 25 }}></View>
                 <View style={styles.textInputContainer}>
 
                     <Text style={[styles.inputtitle]}>Masukan Lingkar Dada Sapi</Text>
-                    <TextInput
-                        style={styles.textInputStyle}
+                    <TextInput keyboardType = 'numeric' onChangeText={(x) => { this.setState({berat:parseInt(x)})  }} 
+                        style={[styles.textInputStyle,{textAlign:'center'}]} 
 
                     />
-                    <Text style={[styles.inputtitle]}>Masukan Lingkar Dada Sapi</Text>
-                    <TextInput
+                    <Text style={[styles.inputtitle]}>Pilih Gender</Text>
+                    <View style={{ width: '80%', height: 50, borderBottomWidth: 1, paddingBottom: -10 }}>
+                        <Picker selectedValue={this.state.gender} onValueChange={this.updateGender}>
+                            <Picker.Item label="Jantan" value="jantan" />
+                            <Picker.Item label="Betina" value="betina" />
+                        </Picker>
 
-                        style={styles.textInputStyle}
-                    />
+                    </View>
+
                 </View>
 
-                <TouchableOpacity style={[styles.button]}>
+                <TouchableOpacity style={[styles.button]} onPress={this.getHasil}>
                     <Text>Hitung</Text>
                 </TouchableOpacity>
-
             </View>
         );
     }
@@ -72,12 +102,11 @@ const styles = StyleSheet.create(
         },
 
         logo: {
-            width: 150,
-            height: 150,
-            elevation: 5,
-            marginTop: 50,
+            width: 100,
+            height: 100,
+            marginTop: 75,
             marginBottom: 15,
-            backgroundColor: 'black',
+            backgroundColor: 'rgba(52, 52, 52, 0)',
             marginHorizontal: 20
         },
 

@@ -72,26 +72,19 @@ class Home extends Component {
           <Text style={{ fontSize: 20 }} >Hitung</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button]} onPress={() => this.props.navigation.navigate('About')}>
-          <Text style={{ fontSize: 20 }} >About us</Text>
+        <TouchableOpacity style={[styles.button]} onPress={() => this.props.navigation.navigate('Konsul')}>
+          <Text style={{ fontSize: 20, textAlign:'center'}} >Klinik Konsultasi Kesehatan Ternak</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button]} onPress={() => {
-          Alert.alert('perhatian', "Apakah anda ingin menutup  aplikasi?",
-            [
-              {
-                text: "cancel",
-                onPress: () => null,
-                style: 'cancel'
-              },
-              {
-                text: "yes",
-                onPress: () => BackHandler.exitApp(),
-              }
-            ]);
-        }}>
-          <Text style={{ fontSize: 20 }} >Keluar</Text>
+        <TouchableOpacity style={[styles.button]} onPress={() => this.props.navigation.navigate('Gudang')}>
+          <Text style={{ fontSize: 20 }} >Gudang Ilmu Ternak</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.button]} onPress={() => this.props.navigation.navigate('About')}>
+          <Text style={{ fontSize: 20 }} >Tentang Kami</Text>
+        </TouchableOpacity>
+
+        
 
         <View style={{
           flex: 1,
@@ -134,10 +127,9 @@ const styles = StyleSheet.create(
     logo: {
       width: 150,
       height: 150,
-      elevation: 5,
       marginTop: 75,
       marginBottom: -20,
-      backgroundColor: 'black',
+      backgroundColor: 'rgba(52, 52, 52, 0)',
       marginHorizontal: 20
     },
 

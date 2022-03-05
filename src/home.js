@@ -1,6 +1,5 @@
 
 import React, { Component } from 'react';
-
 import {
   BackHandler,
   StyleSheet,
@@ -13,6 +12,7 @@ import {
   View,
 } from 'react-native';
 
+
 import {
   Colors,
   DebugInstructions,
@@ -22,12 +22,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
+  
 
   backAction = () => {
     Alert.alert('perhatian', "Apakah anda ingin menutup  aplikasi?",
@@ -69,29 +64,30 @@ class Home extends Component {
         </Text>
 
         <TouchableOpacity style={[styles.button]} onPress={() => this.props.navigation.navigate('Hitung')} >
-          <Text style={{ fontSize: 20 }} >Hitung</Text>
+          <Text style={{fontFamily: 'Poppins-Light', color: 'black', fontSize: 14 }} >Hitung</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={[styles.button]} onPress={() => this.props.navigation.navigate('Konsul')}>
-          <Text style={{ fontSize: 20, textAlign:'center'}} >Klinik Konsultasi Kesehatan Ternak</Text>
+          <Text style={{ fontFamily: 'Poppins-Light', color: 'black', fontSize: 14, textAlign:'center'}} >Klinik Konsultasi Kesehatan Ternak</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={[styles.button]} onPress={() => this.props.navigation.navigate('Gudang')}>
-          <Text style={{ fontSize: 20 }} >Gudang Ilmu Ternak</Text>
+          <Text style={{fontFamily: 'Poppins-Light', color: 'black', fontSize: 14 }} >Gudang Ilmu Ternak</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={[styles.button]} onPress={() => this.props.navigation.navigate('About')}>
-          <Text style={{ fontSize: 20 }} >Tentang Kami</Text>
+          <Text style={{fontFamily: 'Poppins-Light', color: 'black', fontSize: 14 }} >Tentang Kami</Text>
         </TouchableOpacity>
 
         
 
         <View style={{
           flex: 1,
+          marginHorizontal: '10%',
           justifyContent: 'flex-end',
           marginBottom: 30
         }}>
-          <Text style={{ fontSize: 15 }}>  Fakultas Peternakan Univversitas Mataram</Text>
+          <Text style={{fontFamily: 'Poppins-Regular', fontSize: 12, textAlign: 'center' }}>  Didukung oleh SPR Ridho Ilahi dan Fakultas Peternakan Universitas Mataram</Text>
         </View>
 
       </View>
@@ -111,13 +107,13 @@ const styles = StyleSheet.create(
     },
 
     button: {
-      fontFamily: 'arial',
       backgroundColor: "#FFB347",
       elevation: 7,
       marginTop: 25,
       width: '80%',
-      height: 50,
-      // paddingHorizontal:10,
+      height: 55,
+      paddingHorizontal:10,
+      paddingVertical: 7,
       marginHorizontal: '10%',
       alignItems: 'center',
       justifyContent: 'center',
@@ -125,8 +121,8 @@ const styles = StyleSheet.create(
     },
 
     logo: {
-      width: 150,
-      height: 150,
+      width: 125,
+      height: 125,
       marginTop: 75,
       marginBottom: -20,
       backgroundColor: 'rgba(52, 52, 52, 0)',
@@ -134,7 +130,7 @@ const styles = StyleSheet.create(
     },
 
     title: {
-      fontFamily: 'poppins',
+      fontFamily: 'Poppins-Regular',
       color: 'black',
       fontSize: 28,
       textAlign: 'center',

@@ -19,12 +19,21 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 class Gudang extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
+    backAction = () => {
+        this.props.navigation.navigate("Home")
+        return true;
+      }
+    
+      componentDidMount() {
+        this.BackHandler = BackHandler.addEventListener(
+          'hardwareBackpress',
+          this.backAction,
+        );
+      }
+    
+      componentWillUnmount() {
+        this.BackHandler.remove();
+      }
 
     render() {
         return (
@@ -38,15 +47,15 @@ class Gudang extends Component {
                         </Text>
 
 
-                        <Text style={{ paddingTop: 50,
-                            fontSize: 32 }}>
-                            Segere Hadir
+                        <Text style={{fontFamily: 'Poppins-Regular', marginTop:150, color: 'black',
+                            fontSize: 18 }}>
+                            Segera Hadir
                         </Text>
                         <View style={[{ 
-                            marginTop: 359,
+                            marginTop: 239,
                             paddingBottom: 25
                         }]}>
-                            <Text style={{ fontSize: 15 }}>  Fakultas Peternakan Univversitas Mataram</Text>
+                             <Text style={{fontFamily: 'Poppins-Regular', fontSize: 12, textAlign: 'center' }}>  Didukung oleh SPR Ridho Ilahi dan Fakultas Peternakan Universitas Mataram</Text>
                         </View>
 
                     </View>
@@ -79,7 +88,7 @@ const styles = StyleSheet.create(
             marginHorizontal: 20
         },
         title: {
-            fontFamily: 'poppins',
+            fontFamily: 'Poppins-Regular',
             color: 'black',
             fontSize: 25,
             textAlign: 'center',

@@ -19,12 +19,21 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 class About extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
+    backAction = () => {
+        this.props.navigation.navigate("Home")
+        return true;
+      }
+    
+      componentDidMount() {
+        this.BackHandler = BackHandler.addEventListener(
+          'hardwareBackpress',
+          this.backAction,
+        );
+      }
+    
+      componentWillUnmount() {
+        this.BackHandler.remove();
+      }
 
     render() {
         return (
@@ -34,7 +43,7 @@ class About extends Component {
                         <Image source={require('./images/logo.png')} style={[styles.logo]} />
 
                         <Text style={[styles.title]}>
-                            About Us
+                            Tentang Kami
                         </Text>
                         <View style={[styles.box]}>
                             <Text style={[styles.about_text]}>
@@ -53,7 +62,7 @@ class About extends Component {
                                 Masyarakat juga bisa memanfaatkan aplikasi ini untuk konsultasi masalah Kesehatan Ternak dan menambah wawasan tentang Ilmu Peternakan
                             </Text>
 
-                            <Text style={[styles.about_text], { marginTop: 15 }}>
+                            <Text style={[styles.about_text, {marginTop:15}]}>
                                 Aplikasi ini dikembangkan oleh :
                             </Text>
                             <Text style={[styles.about_text]}>
@@ -63,9 +72,9 @@ class About extends Component {
                                 - Sukarne
                             </Text>
 
-                            <Text style={{ marginTop: 15, textAlign: 'center' }}>
+                            <Text style={{fontFamily: 'Poppins-Regular', marginTop: 15, textAlign: 'center' }}>
 
-                                Masukan dan saran serta potensi kerjasama dapat menghunungi nomor 087763291665
+                                Masukan dan saran serta potensi kerjasama dapat menghubungi nomor 087763291665
                             </Text>
                         </View>
 
@@ -76,7 +85,7 @@ class About extends Component {
                             marginTop: 25,
                             marginBottom: 30
                         }}>
-                            <Text style={{ fontSize: 15 }}>  Fakultas Peternakan Universitas Mataram</Text>
+                             <Text style={{fontFamily: 'Poppins-Regular', fontSize: 12, textAlign: 'center' }}>  Didukung oleh SPR Ridho Ilahi dan Fakultas Peternakan Universitas Mataram</Text>
                         </View>
                     </View>
                 </ScrollView>
@@ -98,6 +107,7 @@ const styles = StyleSheet.create(
         },
         about_text: {
             fontSize: 15,
+            fontFamily: 'Poppins-Regular',
             marginBottom: 5,
             textAlign: 'justify',
         },
@@ -110,7 +120,7 @@ const styles = StyleSheet.create(
             marginHorizontal: 20
         },
         title: {
-            fontFamily: 'poppins',
+            fontFamily: 'Poppins-Regular',
             color: 'black',
             fontSize: 25,
             textAlign: 'center',

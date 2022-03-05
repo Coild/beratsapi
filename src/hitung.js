@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Picker } from '@react-native-picker/picker';
 import {
+    BackHandler,
     StyleSheet,
     Text,
     TextInput,
@@ -15,26 +16,42 @@ class Hitung extends Component {
     state = {
         gender: 'jantan',
         berat: 0,
-        hasil : ''
+        hasil: ''
     }
     updateGender = (gender) => {
         this.setState({ gender: gender })
     }
 
+    backAction = () => {
+        this.props.navigation.navigate("Home")
+        return true;
+    }
+
+    componentDidMount() {
+        this.BackHandler = BackHandler.addEventListener(
+            'hardwareBackpress',
+            this.backAction,
+        );
+    }
+
+    componentWillUnmount() {
+        this.BackHandler.remove();
+    }
+
     getHasil = () => {
         // console.log("hasil "+new Number(this.state.berat)+" state : "+this.state.berat);
-        if(this.state.gender==="jantan"){
-            if (this.state.berat<90 || this.state.berat>199){
-                this.setState({hasil:"Tidak ditemukan"})
-            }else {
-                this.setState({hasil:tabel.tabelJantan.get(this.state.berat).toString()+' Kg'});
+        if (this.state.gender === "jantan") {
+            if (this.state.berat < 90 || this.state.berat > 199) {
+                this.setState({ hasil: "Tidak ditemukan" })
+            } else {
+                this.setState({ hasil: tabel.tabelJantan.get(this.state.berat).toString() + ' Kg' });
             }
-            
+
         } else {
-            if (this.state.berat<90 || this.state.berat>199){
-                this.setState({hasil:"Tidak ditemukan"})
-            }else {
-                this.setState({hasil:tabel.tabelBetina.get(this.state.berat).toString()+' Kg'});
+            if (this.state.berat < 90 || this.state.berat > 199) {
+                this.setState({ hasil: "Tidak ditemukan" })
+            } else {
+                this.setState({ hasil: tabel.tabelBetina.get(this.state.berat).toString() + ' Kg' });
             }
         }
     }
@@ -47,23 +64,23 @@ class Hitung extends Component {
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <Text style={{ fontSize: 18 }}>Hasil</Text>
-                    <Text style={{ fontSize: 25 }}>{this.state.hasil}</Text>
+                    <Text style={{fontFamily: 'Poppins-Regular', color: 'black', fontSize: 18 }}>Hasil</Text>
+                    <Text style={{fontFamily: 'Poppins-Regular', color: 'black', fontSize: 25 }}>{this.state.hasil}</Text>
                 </View>
 
-                <View style={{ borderBottomColor: 'black', borderBottomWidth: 5, width: '90%', marginTop: 25 }}></View>
+                <View style={{ borderBottomColor: 'black', borderBottomWidth: 5, width: '90%', marginTop: 15 }}></View>
                 <View style={styles.textInputContainer}>
 
-                    <Text style={[styles.inputtitle]}>Masukan Lingkar Dada Sapi</Text>
-                    <TextInput keyboardType = 'numeric' onChangeText={(x) => { this.setState({berat:parseInt(x)})  }} 
-                        style={[styles.textInputStyle,{textAlign:'center'}]} 
+                    <Text style={[styles.inputtitle]}>Masukkan Lingkar Dada Sapi (CM)</Text>
+                    <TextInput style={[styles.textInputStyle,{paddingLeft:17, textAlign: 'left' }]} keyboardType='numeric' onChangeText={(x) => { this.setState({ berat: parseInt(x) }) }}
+                        
 
                     />
                     <Text style={[styles.inputtitle]}>Pilih Gender</Text>
                     <View style={{ width: '80%', height: 50, borderBottomWidth: 1, paddingBottom: -10 }}>
                         <Picker selectedValue={this.state.gender} onValueChange={this.updateGender}>
-                            <Picker.Item label="Jantan" value="jantan" />
-                            <Picker.Item label="Betina" value="betina" />
+                            <Picker.Item style={styles.inputtitle} label="Jantan" value="jantan" />
+                            <Picker.Item style={styles.inputtitle} label="Betina" value="betina" />
                         </Picker>
 
                     </View>
@@ -73,6 +90,15 @@ class Hitung extends Component {
                 <TouchableOpacity style={[styles.button]} onPress={this.getHasil}>
                     <Text>Hitung</Text>
                 </TouchableOpacity>
+
+                <View style={{
+                    flex: 1,
+                    marginHorizontal: '10%',
+                    justifyContent: 'flex-end',
+                    marginBottom: 30
+                }}>
+                    <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 12, textAlign: 'center' }}>  Didukung oleh SPR Ridho Ilahi dan Fakultas Peternakan Universitas Mataram</Text>
+                </View>
             </View>
         );
     }
@@ -111,7 +137,7 @@ const styles = StyleSheet.create(
         },
 
         title: {
-            fontFamily: 'poppins',
+            fontFamily: 'Poppins-Regular',
             color: 'black',
             fontSize: 25,
             textAlign: 'center',
@@ -120,13 +146,18 @@ const styles = StyleSheet.create(
         },
 
         inputtitle: {
+            fontFamily: 'Poppins-Regular',
+            color: 'black',
             fontSize: 18,
         },
 
         textInputStyle: {
             borderBottomColor: "black",
+            fontFamily: 'Poppins-Regular',
             width: '80%',
+            color: 'black',
             height: 50,
+            fontSize:16,
             // paddingHorizontal:10,
             marginHorizontal: '10%',
             borderWidth: 1,

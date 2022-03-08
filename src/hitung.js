@@ -15,6 +15,7 @@ import tabel from './tabel';
 class Hitung extends Component {
     state = {
         gender: 'jantan',
+        jenis :'bali',
         berat: 0,
         hasil: ''
     }
@@ -76,7 +77,7 @@ class Hitung extends Component {
                         
 
                     />
-                    <Text style={[styles.inputtitle]}>Pilih Gender</Text>
+                    <Text style={[styles.inputtitle,{marginTop:15}]}>Pilih Gender</Text>
                     <View style={{ width: '80%', height: 50, borderBottomWidth: 1, paddingBottom: -10 }}>
                         <Picker selectedValue={this.state.gender} onValueChange={this.updateGender}>
                             <Picker.Item style={styles.inputtitle} label="Jantan" value="jantan" />
@@ -117,7 +118,7 @@ const styles = StyleSheet.create(
         button: {
             backgroundColor: "#FFB347",
             elevation: 7,
-            marginTop: 25,
+            marginTop: 20,
             width: '80%',
             height: 50,
             // paddingHorizontal:10,

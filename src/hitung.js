@@ -15,12 +15,16 @@ import tabel from './tabel';
 class Hitung extends Component {
     state = {
         gender: 'jantan',
-        jenis :'bali',
+        jenis: 'bali',
         berat: 0,
         hasil: ''
     }
     updateGender = (gender) => {
         this.setState({ gender: gender })
+    }
+
+    updateJJenis = (jenis) => {
+        this.setState({ jenis: jenis })
     }
 
     backAction = () => {
@@ -42,17 +46,24 @@ class Hitung extends Component {
     getHasil = () => {
         // console.log("hasil "+new Number(this.state.berat)+" state : "+this.state.berat);
         if (this.state.gender === "jantan") {
-            if (this.state.berat < 90 || this.state.berat > 199) {
-                this.setState({ hasil: "Tidak ditemukan" })
+            if (this.state.jenis === "bali") {
+                if (this.state.berat < 90 || this.state.berat > 199) {
+                    this.setState({ hasil: "Tidak ditemukan" })
+                } else {
+                    this.setState({ hasil: tabel.tabelJantan.get(this.state.berat).toString() + ' Kg' });
+                }
             } else {
-                this.setState({ hasil: tabel.tabelJantan.get(this.state.berat).toString() + ' Kg' });
+                this.setState({hasil : (5.8*this.state.berat-675.47).toFixed(2)})
             }
-
         } else {
-            if (this.state.berat < 90 || this.state.berat > 199) {
-                this.setState({ hasil: "Tidak ditemukan" })
+            if (this.state.jenis === "bali") {
+                if (this.state.berat < 90 || this.state.berat > 199) {
+                    this.setState({ hasil: "Tidak ditemukan" })
+                } else {
+                    this.setState({ hasil: tabel.tabelJantan.get(this.state.berat).toString() + ' Kg' });
+                }
             } else {
-                this.setState({ hasil: tabel.tabelBetina.get(this.state.berat).toString() + ' Kg' });
+                this.setState({hasil : 3.74*this.state.berat-312.69})
             }
         }
     }
@@ -65,20 +76,31 @@ class Hitung extends Component {
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <Text style={{fontFamily: 'Poppins-Regular', color: 'black', fontSize: 18 }}>Hasil</Text>
-                    <Text style={{fontFamily: 'Poppins-Regular', color: 'black', fontSize: 25 }}>{this.state.hasil}</Text>
+                    <Text style={{ fontFamily: 'Poppins-Regular', color: 'black', fontSize: 18 }}>Hasil</Text>
+                    <Text style={{ fontFamily: 'Poppins-Regular', color: 'black', fontSize: 25 }}>{this.state.hasil}</Text>
                 </View>
 
-                <View style={{ borderBottomColor: 'black', borderBottomWidth: 5, width: '90%', marginTop: 15 }}></View>
+                <View style={{ borderBottomColor: 'black', borderBottomWidth: 5, width: '90%', marginTop: 0 }}></View>
                 <View style={styles.textInputContainer}>
 
                     <Text style={[styles.inputtitle]}>Masukkan Lingkar Dada Sapi (CM)</Text>
-                    <TextInput style={[styles.textInputStyle,{paddingLeft:17, textAlign: 'left' }]} keyboardType='numeric' onChangeText={(x) => { this.setState({ berat: parseInt(x) }) }}
-                        
-
+                    <TextInput style={[styles.textInputStyle, { paddingLeft: 17, textAlign: 'left' }]} keyboardType='numeric' onChangeText={(x) => { this.setState({ berat: parseInt(x) }) }}
                     />
-                    <Text style={[styles.inputtitle,{marginTop:15}]}>Pilih Gender</Text>
+                    
+                    <Text style={[styles.inputtitle]}>Pilih Jenis Sapi</Text>
                     <View style={{ width: '80%', height: 50, borderBottomWidth: 1, paddingBottom: -10 }}>
+                        <Picker selectedValue={this.state.jenis} onValueChange={this.updateJJenis}>
+                            <Picker.Item style={styles.inputtitle} label="bali" value="bali" />
+                            <Picker.Item style={styles.inputtitle} label="simental" value="simental" />
+                            <Picker.Item style={styles.inputtitle} label="limosin" value="limosin" />
+                            <Picker.Item style={styles.inputtitle} label="brangus" value="brangus" />
+                            <Picker.Item style={styles.inputtitle} label="brahman" value="brahman" />
+                        </Picker>
+
+                    </View>
+                    
+                    <Text style={[styles.inputtitle,{marginTop:10}]}>Pilih Gender</Text>
+                    <View style={{ width: '80%', height: 50,  borderBottomWidth: 1, paddingBottom: -10 }}>
                         <Picker selectedValue={this.state.gender} onValueChange={this.updateGender}>
                             <Picker.Item style={styles.inputtitle} label="Jantan" value="jantan" />
                             <Picker.Item style={styles.inputtitle} label="Betina" value="betina" />
@@ -118,7 +140,7 @@ const styles = StyleSheet.create(
         button: {
             backgroundColor: "#FFB347",
             elevation: 7,
-            marginTop: 20,
+            marginTop: 25,
             width: '80%',
             height: 50,
             // paddingHorizontal:10,
@@ -158,7 +180,7 @@ const styles = StyleSheet.create(
             width: '80%',
             color: 'black',
             height: 50,
-            fontSize:16,
+            fontSize: 16,
             // paddingHorizontal:10,
             marginHorizontal: '10%',
             borderWidth: 1,
